@@ -1,32 +1,21 @@
-﻿Console.WriteLine("Простые делители числа 13195 - это 5, 7, 13 и 29.");
+﻿Console.Clear();
+Console.WriteLine("Простые делители числа 13195 - это 5, 7, 13 и 29.");
 Console.WriteLine("Каков самый большой делитель числа 600851475143, являющийся простым числом?");
 Console.Write("Введите число: ");
-int NumberN = int.Parse(Console.ReadLine() ?? "0");
+long NumberN = long.Parse(Console.ReadLine() ?? "0");
 
-int counter = 1;
-int divine = 1;
-int divine2 = 1;
-int maxdivine = 1;
-while (counter < NumberN)
-{
-    if ((NumberN%counter) == 0)
+long Number = NumberN;
+int i = 2;
+int multi = 0;
+
+while(NumberN > 1)
+{   
+    if (NumberN%i == 0)
     {
-        divine = counter;
+        NumberN /= i;
+        multi = i;
+        i = 2;
     }
-    counter++;
-    int count = 1;
-    while (count<divine)
-    {
-        if ((divine%count) == 0)
-        {
-            divine2 = count;
-        }
-        count++;  
-    }
-    if (divine2 == 1)
-        {
-            maxdivine = divine;
-        }
-    
+    else i++;
 }
-Console.WriteLine($"Максимальным простым делителем числа {NumberN} является {maxdivine}");
+Console.WriteLine($"Макисмальныйм простым делителем числа {Number} является {multi}");
