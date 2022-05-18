@@ -7,9 +7,7 @@ int sum = 0;
 while (counter < NumberN)
 {
     if (counter%3 == 0 || counter%5 == 0)
-    {
         sum = sum + counter;
-    }
     counter++;
 }
 Console.Write($"Сумма чисел от 1 до {NumberN} равна {sum}");
