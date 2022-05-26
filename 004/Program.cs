@@ -1,24 +1,46 @@
 ﻿Console.Clear();
+Console.WriteLine("Число-палиндром с обеих сторон (справа налево и слева направо) читается одинаково. Самое большое число-палиндром, полученное умножением двух двузначных чисел – 9009 = 91 * 99.");
+Console.WriteLine("Найдите самый большой палиндром, полученный умножением двух трехзначных чисел.");
 Console.Write("Введите число: ");
-int Number = int.Parse(Console.ReadLine() ?? "0");
+int NumberN = int.Parse(Console.ReadLine() ?? "0");
 
-int NumLen = 0;
-int FirstNumber = Number;
-int SecondNumber = Number;
-
-while (FirstNumber>0)
+int maxPoly = 0, indX = 0, indY = 0;
+for (int i = 1; i < NumberN; i++)
+    for (int j = 1; j < NumberN; j++)
     {
-        FirstNumber = FirstNumber/10;
-        NumLen++;
+        if (PolyNumber (i*j))
+            {
+                maxPoly = i*j;
+                indX = i;
+                indY = j;
+            }
     }
+Console.Write($"Максимальный палиндром при умножении трехзначных чисел"
+    +$" будет число {maxPoly}, полученное при умножении {indX} и {indY}");
 
-for (int i=1; i <= NumLen; i++)
+bool PolyNumber (int Number)
 {
-    FirstNumber = FirstNumber + (SecondNumber%10)*(Convert.ToInt32(Math.Pow(10,NumLen- i)));
-    SecondNumber = SecondNumber/10;
+    int NumLen = 0;
+    int FirstNumber = Number;
+    int SecondNumber = Number;
+
+    while (FirstNumber>0)
+        {
+            FirstNumber = FirstNumber/10;
+            NumLen++;
+        }
+
+    for (int i=1; i <= NumLen; i++)
+    {
+        FirstNumber = FirstNumber + (SecondNumber%10)*(Convert.ToInt32(Math.Pow(10,NumLen- i)));
+        SecondNumber = SecondNumber/10;
+    }
+    if (Number == FirstNumber)
+        return (true);
+    else
+        return (false);
 }
-if (Number == FirstNumber)
-    Console.WriteLine($"Числе {Number} является палиндромом");
+    
 
 
 // Console.WriteLine("Число-палиндром с обеих сторон (справа налево и слева направо) читается одинаково. Самое большое число-палиндром, полученное умножением двух двузначных чисел – 9009 = 91 * 99.");
